@@ -31,6 +31,7 @@ public:
 	void Deletemin(ElemType& e);				// 删除最小值
 	void DeleteElemE(ElemType& e);				//删除定值e
 	void DeleteElemS();							//删除重复值
+	void Inverse();								//逆置
 };
 
 
@@ -261,6 +262,16 @@ void SqList<ElemType>::DeleteElemS()
 		i++;
 	}
 	cout << "已删除所有重复项 "  << endl;
+}
+
+template <class ElemType>
+// 逆置
+void SqList<ElemType>::Inverse()
+{
+	for (int i = 0; i <= (length - 1) / 2; i++)
+	{
+		swap(elems[i], elems[length - i - 1]);
+	}
 }
 #endif
 

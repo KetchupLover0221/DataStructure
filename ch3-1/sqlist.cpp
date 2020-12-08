@@ -25,14 +25,8 @@ int main()
 	l2.Show();
 	l2.DeleteElemS();
 	l2.Show();
-	//cout << l1.GetLength() << endl;
-	//l1.GetElem(2,e);
-	//cout << l1.IsEmpty() << endl;
-	//e = 'c';
-	//l1.LocateElem(e);
-	//e = 'f';
-	//l1.SetElem(3, e);
-
+	l2.Inverse();
+	l2.Show();
 
 }
 
