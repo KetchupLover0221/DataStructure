@@ -30,7 +30,7 @@ public:
 
 	Status InsertElemI(int i, const ElemType& e);	 // 在制定位置插入元素
 	Status DeleteElemI(int position);		 // 删除指定位置元素	
-	void Inverse();						//逆置
+	void Reverse();						//逆置
 	void AddList(LinkList < ElemType>& l2);		//合并为递减有序单链表
 };
 
@@ -255,7 +255,7 @@ Status LinkList<ElemType>::DeleteElemI(int i)
 }
 
 template <class ElemType>
-void LinkList<ElemType>::Inverse()
+void LinkList<ElemType>::Reverse()
 {
 	Node<ElemType>*p , *q, *r;
 	p = head;
@@ -279,42 +279,33 @@ void LinkList<ElemType>::AddList(LinkList<ElemType>& l2)
 	//Inverse();
 	//l2.Inverse();
 	Node<ElemType>* p1, * p2,*q,*r;
+	int count = 1;
 	p1 = head;
 	p2 = l2.head;
-	head = NULL;
-	l2.head = NULL;
-	while(p2 != NULL && p1!= NULL)
+	while (p1!= NULL&&p2!= NULL)
 	{
-		if ( p1->data <= p2->data)
+		if (p2->data <= p1->data)
 		{
-			q= p1;
-			p1 = p1->next;
+			InsertElemI(count, p2->data);
+			count++;
+			p2 = p2->next;
 		}
 		else
 		{
-			q = p2;
+			p1 = p1->next;
+			count++;
+		}
+	}
+	if (p1 == NULL && p2->next != NULL)
+	{
+		while (p2 != NULL)
+		{
+			InsertElemI(count, p2->data);
+			count++;
 			p2 = p2->next;
 		}
-		q->next = head;
-		head = q;
 	}
-	if (p1 == NULL)
-	{
-		r = p2;
-	}
-	else
-	{
-		r = p1;
-	}
-	while (r != NULL)
-	{
-		q = r;
-		r = r->next;
-		q->next = head;
-		head = q;
-	}
-	length += l2.length;
-	l2.length = 0;
+	Reverse();
 }
 #endif
 
